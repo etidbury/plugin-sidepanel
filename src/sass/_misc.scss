@@ -26,6 +26,7 @@
 --------/EXAMPLE--------
  */
 
+$mobile-mode-max-width: 768px;
 $selector-menu: aside;
 $selector-content: main;
 $selector-overlay-close: #sidepanel-overlay-close;
@@ -72,6 +73,7 @@ body {
     flex-basis:$aside-width;
 
     min-width: (0.76*$aside-width);
+    //max-width: (0.76*$aside-width);
 
   }
 
@@ -117,12 +119,12 @@ body {
 }
 
 
-@media (max-width:768px){
+@media (max-width:$mobile-mode-max-width){
   #{$selector-menu} {
 
     & > *{
       flex-basis:$m-aside-width;
-
+      min-width: 75vw;
     }
 
     &:target {
