@@ -31,6 +31,7 @@ $selector-content: main;
 $selector-overlay-close: #sidepanel-overlay-close;
 
 $aside-width: 250px;
+$m-aside-width: 80%;
 $overlay-bg: #000;
 $overlay-opacity: 0.3;
 $display-animation-duration: 2s;
@@ -56,10 +57,10 @@ body {
 
   position: static;
   top: 0;
-  width: 0;
+  flex-basis: 0;
   height: 100%;
 
-  transition: width $display-animation-duration ease;
+  transition: flex-basis $display-animation-duration ease;
 
   overflow-x:hidden;
   overflow-y:auto;
@@ -67,12 +68,14 @@ body {
   & > *{
     /*white-space: nowrap;*/
     min-width:$aside-width;
+
+
     font-size:30px;
   }
 
-
   &:target {
-    width: $aside-width;
+    flex-basis:$aside-width;
+
     /*position:static;*/
 
     /*& *{
@@ -107,6 +110,9 @@ body {
   /*-----------/overlay-close---------*/
 
 }
+
+
+
 
 
 
