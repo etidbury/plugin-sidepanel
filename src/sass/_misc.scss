@@ -61,9 +61,13 @@ body {
 
   transition: width $display-animation-duration ease;
 
+  overflow-x:hidden;
+  overflow-y:auto;
 
   & > *{
-    white-space: nowrap;
+    /*white-space: nowrap;*/
+    min-width:$aside-width;
+    font-size:30px;
   }
 
 
@@ -77,6 +81,10 @@ body {
   }
 
 
+
+  &:target ~ #{$selector-content}{
+    overflow:hidden;
+  }
 
 
   /*-----------overlay-close---------*/
