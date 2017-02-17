@@ -73,7 +73,6 @@
 
     <section>My content</section>
 
-
     <a href="#panel-1" data-panel>Panel 1</a>
     <br/>
     <a href="#panel-2" data-panel>Panel 2</a>
@@ -175,10 +174,16 @@
 
 </style>
 <script>
-    jQuery(document).ready(function () {
 
-        jQuery('main').prepend("<a href='#' id='sidepanel-overlay-close' />");
-    });
+    // no width change of main content
+    (function (mainSelector,overlayCloseID,$main) {
+        jQuery('#'+overlayCloseID).remove();
+        $main=jQuery(mainSelector);
+        $main.html('<div>'+$main.html()+'</div>');
+        $main.prepend("<a href='#' id='"+overlayCloseID+"'></a>");
+        jQuery(mainSelector+' > *').css({minWidth:$main.width()+'px'});
+    })('main','sidepanel-overlay-close');
+
 </script>
 </body>
 </html>
