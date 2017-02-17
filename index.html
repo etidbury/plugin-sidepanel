@@ -1,69 +1,90 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
 
-        <!--Bootstrap-->
-        <!--Note: Should already be imported in SASS-->
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-        <!--/Bootstrap-->
+    <!--Bootstrap-->
+    <!--Note: Should already be imported in SASS-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--/Bootstrap-->
 
-        <link rel="stylesheet" href="dist/css/default.css">
+    <link rel="stylesheet" href="dist/css/default.css">
 
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
 
-        <!-- Content -->
-        <header>
-            <nav>
-                <h1>Hello World</h1>
-                <ul>
-                    <li>Glyphicons
-                        <i class="glyphicon glyphicon-alert"></i>
-                        <i class="glyphicon glyphicon-ok"></i>
-                        <i class="glyphicon glyphicon-triangle-right"></i>
-                    </li>
-                    <li>FontAwesome
-                        <i class="fa fa-camera-retro fa-2x"></i>
-                        <i class="fa fa-camera-retro fa-3x"></i>
-                        <i class="fa fa-camera-retro fa-4x"></i>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <section class="container" id="root">
-            </section>
-        </main>
+<!-- Content -->
+<aside id="panel-1">
+    <div>panel 1 content</div>
 
-        <footer>
+</aside>
+<aside id="panel-2">
+    <div>panel 2 content</div>
+</aside>
 
-        </footer>
-        <!--/Content -->
+<main>
+    <header><h1>My content header</h1></header>
+
+    <section>My content</section>
 
 
+    <a href="#panel-1" data-panel>Panel 1</a>
+    <br/>
+    <a href="#panel-2" data-panel>Panel 1</a>
+    <a href="#close">close</a>
 
-        <!--Libraries-->
+</main>
+<!--/Content -->
 
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>        <script>window.jQuery || document.write('<script src="vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script>(typeof jQuery().modal == 'function') || document.write('<script src="node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"><\/script>')</script>
+<!--Libraries-->
 
-        <!--/Libraries-->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="node_modules/jquery/dist/jquery.min.js"><\/script>')</script>
 
-        <script src="dist/js/bundle.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="vendor/jquery-1.12.0.min.js"><\/script>')</script>
+<script>(typeof jQuery().modal == 'function') || document.write('<script src="node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"><\/script>')</script>
 
-    </body>
+<!--/Libraries-->
+
+
+<style>
+    #panel-1{
+        background: blue;
+    }
+    #panel-2{
+        background: purple;
+    }
+
+    main {
+        background-color:green;
+
+        height:100%;
+        width:100%;
+        overflow-y:auto;
+    }
+
+</style>
+<script>
+    jQuery(document).ready(function () {
+
+        jQuery('main').prepend("<a href='#' id='sidepanel-overlay-close' />");
+    });
+</script>
+</body>
 </html>
