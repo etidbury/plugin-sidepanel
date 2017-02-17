@@ -1,8 +1,10 @@
 /*
 
-Note: add "<a href='#' id='sidepanel-overlay-close' />"
-if you want the main content to be overlayed, and have the clicking of
-the main content close the panel.
+-   add "<a href='#' id='sidepanel-overlay-close' />"
+    if you want the main content to be overlayed, and have the clicking of
+    the main content close the panel.
+
+-
 
 
 --------EXAMPLE--------
@@ -24,6 +26,10 @@ the main content close the panel.
 --------/EXAMPLE--------
  */
 
+$selector-menu: aside;
+$selector-content: main;
+$selector-overlay-close: #sidepanel-overlay-close;
+
 $aside-width: 250px;
 $overlay-bg: #000;
 $overlay-opacity: 0.3;
@@ -40,8 +46,14 @@ body {
   @include align-items(flex-start);
   @include align-content(flex-start);
 }
+#{$selector-content}{
+  height:100%;
+  width:100%;
+  overflow-y:auto;
+}
 
-aside {
+#{$selector-menu} {
+
   position: static;
   top: 0;
   width: 0;
@@ -64,25 +76,27 @@ aside {
     }*/
   }
 
-  & ~ main > #sidepanel-overlay-close {
+
+
+
+  /*-----------overlay-close---------*/
+  & ~ #{$selector-content} > #{$selector-overlay-close} {
     display: none;
     background: $overlay-bg;
     opacity: 0;
     transition: opacity $display-animation-duration ease;
-
     position: fixed;
     top: 0;
-
     width: 100%;
     height: 100%;
   }
 
-  &:target ~ main > #sidepanel-overlay-close {
+  &:target ~ #{$selector-content} > #{$selector-overlay-close} {
     display: block;
-
     opacity: $overlay-opacity;
 
   }
+  /*-----------/overlay-close---------*/
 
 }
 
