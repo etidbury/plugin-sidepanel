@@ -61,7 +61,7 @@ body {
   flex-basis: 0;
   height: 100%;
 
-  transition: flex-basis $display-animation-duration ease;
+  @include transition(flex-basis $display-animation-duration ease);
 
   overflow-x:hidden;
   overflow-y:auto;
