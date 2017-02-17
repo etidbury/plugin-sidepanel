@@ -102,7 +102,6 @@ body {
     display: none;
     background: $overlay-bg;
     opacity: 0;
-    transition: opacity $display-animation-duration ease;
     position: fixed;
     top: 0;
     width: 100%;
@@ -112,7 +111,6 @@ body {
   &:target ~ #{$selector-content} > #{$selector-overlay-close} {
     display: block;
     opacity: $overlay-opacity;
-
   }
   /*-----------/overlay-close---------*/
 
