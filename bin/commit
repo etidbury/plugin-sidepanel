@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+cd "bin/"
+source "_config.sh"
+cd "../"
+
+
+sh "bin/setup"
+
+source ${SETTINGS_URI}
+
+
+
+if  [[ -n "${1/[ ]*\n/}" ]]; then
+    commitMessage=$1
+else
+    echo ${COLOR_QUESTION}
+    read -p "Please specify a commit message (to describe the changes you have made): " commitMessage
+    echo $NC
+fi
+
+if  [[ -n "${commitMessage/[ ]*\n/}" ]]; then
+
+    echo ${COLOR_ACTION_SUB}
+    echo "Commit message: '${commitMessage}'"
+    echo $NC
+
+    echo ${COLOR_ACTION}
+    echo "Reporting any files that have been deleted to Git repository..."
+    echo $NC
+    git ls-files --deleted -z | xargs -0 git rm #track deleted items
+
+    echo ${COLOR_ACTION}
+    echo "Adding any un-tracked files..."
+    echo $NC
+    git add .
+    echo "${COLOR_ACTION}Committing changes...$NC"
+    git commit -m ${commitMessage}
+
+
+
+    echo ${COLOR_QUESTION}
+    read -p "Save/Push changes to Github? (y): "  yesNo
+    echo $NC
+
+    if  [[ ${yesNo} == "y" ]]; then
+
+        _currentDirectoryName=${PWD##*/}
+
+        git checkout -B master
+        git add .
+        git commit -am "[bot] ${commitMessage}"
+
+        echo "${COLOR_ACTION}Saving/Pushing to your remote Github repository...$NC"
+        git push -u origin master
+
+    else
+        echo "${COLOR_WARNING}Latest changes have NOT been pushed to Github - Exiting...$NC"
+        exit 0
+    fi
+
+
+else
+    echo ${COLOR_WARNING}
+    echo "No commit message specified - Exiting..."
+    echo $NC
+    exit 1
+fi
+
+
+
+
+
+exit 0

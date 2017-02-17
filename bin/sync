@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+cd "bin/"
+source "_config.sh"
+cd "../"
+
+sh "bin/setup"
+source ${SETTINGS_URI}
+
+SYNC_BRANCH='bot-sync'
+
+git checkout -B master
+git add --all
+git status
+echo ${COLOR_QUESTION}
+read -p "Confirm syncing changes ('y' to confirm): "  yesNo
+echo $NC
+
+if [[ ${yesNo} == "y" ]]; then
+
+
+
+
+    if  [[ -n "${1/[ ]*\n/}" ]]; then
+        commitMessage=$1
+    else
+        echo ${COLOR_QUESTION}
+        read -p "Please specify a commit message (to describe the changes you have made): " commitMessage
+        echo $NC
+    fi
+
+    if [[ -z "${commitMessage// }" ]]; then #if blank
+        echo "${COLOR_ACTION}Commit message not specified - Cancelling...$NC"
+        exit 1
+    else
+
+        git commit -am "[bot] ${commitMessage}"
+        #git pull
+
+        echo "${COLOR_ACTION}Syncing with Github...$NC"
+
+
+        git checkout -B master
+        git push -u origin master
+
+        echo "${COLOR_ACTION}Syncing with FTP Server...$NC"
+
+        sh "bin/"git-ftp-helper.sh "push"
+
+    fi
+fi
+
+
+git checkout -B master
+####
+exit 0
+
+

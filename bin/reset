@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+cd "bin/"
+source "_config.sh"
+cd "../"
+
+if [ -f ${SETTINGS_URI} ]; then #if not file exists
+
+source ${SETTINGS_URI}
+
+function ask_delete_local_git(){
+    echo "${COLOR_QUESTION}"
+    read -p "Would you like to delete the local git repository? (.git) ('y' to delete): " yesNo
+    echo $NC
+
+    if [[ ${yesNo} == 'y' ]]; then
+        rm -rf ".git"
+        echo "${COLOR_ACTION}Deleted the local git repository (.git)${NC}"
+    else
+        echo "${COLOR_WARNING}Cancelling reset process...${NC}"
+        exit 1
+    fi
+
+}
+function ask_delete_settings(){
+    echo "${COLOR_QUESTION}"
+    read -p "Would you like to delete the settings file? (${SETTINGS_URI}) ('y' to delete): " yesNo
+    echo $NC
+
+    if [[ ${yesNo} == 'y' ]]; then
+        rm -rf ${SETTINGS_URI}
+        echo "${COLOR_ACTION}Deleted the settings file (${SETTINGS_URI})"
+        ask_delete_local_git
+    else
+        echo "${COLOR_WARNING}Cancelling reset process...${NC}"
+        exit 1
+    fi
+
+}
+
+echo ${COLOR_QUESTION}
+
+    echo "${COLOR_QUESTION}"
+    read -p "Would you like to delete the remote repository on Github? ('y' to delete, 'n' to go next): " yesNo
+    echo $NC
+
+    if [[ ${yesNo} == 'y' ]]; then
+        echo "${COLOR_QUESTION}"
+        curl -u ${GIT_USERNAME} -X DELETE https://api.github.com/repos/${GIT_USERNAME}/${GIT_REPOSITORY_NAME} -d "{\"name\":\"${_currentDirectoryName}\"}" --verbose
+        echo $NC
+
+        ask_delete_settings
+
+    else
+        if [[ ${yesNo} == 'n' ]]; then
+            ask_delete_settings
+        else
+            echo "${COLOR_WARNING}Cancelling reset process...${NC}"
+            exit 1
+        fi
+
+
+    fi
+
+
+
+
+else
+    echo "${COLOR_WARNING}No ${SETTINGS_URI} file found. Unable to complete the reset process.${NC}"
+fi
+
+#rm -rf ${SETTINGS_URI}

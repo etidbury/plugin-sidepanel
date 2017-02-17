@@ -1,0 +1,6 @@
+.idea
+bin
+.lftp
+.lftp.BACKUP
+src
+node_modules

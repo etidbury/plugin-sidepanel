@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+cd "bin/"
+source "_config.sh"
+cd "../"
+
+if [ ! -f ${SETTINGS_URI} ]; then #if not file exists
+
+
+    rm -rf .git ###remove boilerplate git
+
+
+    echo "${COLOR_WARNING}Configuration file not found...( ${SETTINGS_URI} ) $NC"
+    rm -rf ${SETTINGS_URI}
+    echo ${COLOR_QUESTION}
+    #git clone https://github.com/twbs/bootstrap.git ${FTP_CONFIG_URI}
+
+    _currentDirectoryName=${PWD##*/}
+    read -p "Enter a name for your new Github repository (Default: '${_currentDirectoryName}')" repositoryName
+    if [[ -z "${repositoryName// }" ]]; then #if blank, set default
+        repositoryName=${_currentDirectoryName}
+    fi
+
+    echo "${COLOR_ACTION}Repository name set to: '${repositoryName}'$NC"
+
+    echo "${COLOR_QUESTION}"
+    read -p "Enter Git username: " git_username
+    echo $NC
+
+    git init
+    git checkout -B master
+
+    echo ${COLOR_QUESTION}
+    curl -u ${git_username} https://api.github.com/user/repos -d "{\"name\":\"${_currentDirectoryName}\",\"private\":\"true\"}"
+    echo $NC
+
+    gitOrigin="https://github.com/${git_username}/${repositoryName}.git"
+
+    echo "${COLOR_ACTION}Adding remote origin '${gitOrigin}' to your current git repository...$NC"
+
+    echo gitOrigin
+
+
+    git remote add origin ${gitOrigin}
+
+    echo "${COLOR_ACTION}Your settings have been saved here: ${SETTINGS_URI}. Please keep this safe. $NC"
+
+
+    read -p "Enter FTP Host (e.g. examplehost.com): " ftp_host
+    read -p "Enter FTP Project Path (default: './'): " ftp_path
+
+    if [[ -z "${ftp_path// }" ]]; then #if blank, set default
+        ftp_path="./"
+    fi
+
+    read -p "Enter FTP Username: " ftp_username
+    read -p "Enter FTP Password [PASSWORD PRINTED HERE]: " ftp_password
+    echo $NC
+
+    ftp_url="ftp://${ftp_host}/${ftp_path}"
+
+    echo "FTP_URL=${ftp_url}\nFTP_HOST=${ftp_host}\nFTP_PATH=${ftp_path}\nFTP_USERNAME=${ftp_username}\nFTP_PASSWORD=${ftp_password}\nGIT_REPOSITORY_NAME=${repositoryName}\nGIT_USERNAME=${git_username}\n" > ${SETTINGS_URI}
+
+
+    echo "${COLOR_WARNING}Your settings have been saved here: ${SETTINGS_URI}. Please keep this safe. $NC"
+
+#else
+    #echo "${COLOR_WARNING}Configuration file already found.$NC"
+
+
+
+
+
+fi
+
+sh "bin/config-lftp.sh"
+
+
+source ${SETTINGS_URI}
+
+GIT_ORIGIN_URL="http://github.com/${GIT_USERNAME}/${GIT_REPOSITORY_NAME}/"
+
+git config git-ftp.url ${FTP_URL}
+git config git-ftp.user ${FTP_USERNAME}
+git config git-ftp.password ${FTP_PASSWORD}
+
+
+exit 0

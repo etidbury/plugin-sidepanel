@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+
+cd "bin/"
+source "_config.sh"
+cd "../"
+
+
+sh "bin/setup"
+source ${SETTINGS_URI}
+
+echo ${COLOR_QUESTION}
+read -p "Confirm you would like to download a backup everything from remote server '${FTP_URL}' ('y' to confirm): "  yesNo
+echo $NC
+
+if [[ ${yesNo} == "y" ]]; then
+    sh "bin/git-ftp-helper.sh" "snapshot"
+
+    git checkout -B ${MASTER_BRANCH}
+
+    echo "${COLOR_NOTICE}NOTICE: Please check whether contents was downloaded successfully."
+    echo ${COLOR_QUESTION}
+    read -p "Would you like to save/push the changes of your backup to Github? ('y' to confirm): "  yesNo
+    echo $NC
+
+    if [[ ${yesNo} == "y" ]]; then
+        git checkout -B ${MASTER_BRANCH}
+        git merge ${BACKUP_BRANCH}
+        git push origin master
+    else
+        git checkout -B ${MASTER_BRANCH}
+    fi
+fi
