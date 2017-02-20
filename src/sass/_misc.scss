@@ -26,16 +26,20 @@
 --------/EXAMPLE--------
  */
 
-$mobile-mode-max-width: 768px;
+$mobile-mode-max-width: 767px;
+$hd-desktop-min-width: 920px;
+
 $selector-menu: aside;
 $selector-content: main;
 $selector-overlay-close: #sidepanel-overlay-close;
 
-$aside-width: 30vw;
-$m-aside-width: 300vw;
+$hd-desktop-aside-width: 30vw;
+$aside-width: 50vw;
+$aside-max-width: 300px;
+$m-aside-width: 700vw;
 $overlay-bg: #000;
 $overlay-opacity: 0.3;
-$display-animation-duration: 2s;
+$display-animation-duration: 0.5s;
 
 
 html, body {
@@ -72,15 +76,13 @@ body {
   & > *{
     flex-basis:$aside-width;
 
-    min-width: (0.76*$aside-width);
-    //max-width: (0.76*$aside-width);
+    min-width: (0.6*$aside-width);
 
   }
 
   &:target {
 
     flex-basis:$aside-width;
-
 
 
     /*position:static;*/
@@ -116,18 +118,50 @@ body {
 
 }
 
-
 @media (max-width:$mobile-mode-max-width){
   #{$selector-menu} {
 
+    @include transition(width $display-animation-duration ease);
+
+
+    width:0;
+    flex-basis:inherit;
+
     & > *{
-      flex-basis:$m-aside-width;
+      width:0;
       min-width: 75vw;
     }
 
     &:target {
 
-      flex-basis:$m-aside-width;
+      flex-basis:inherit;
+      width:$m-aside-width;
+
+    }
+
+  }
+}
+
+
+
+
+@media (min-width:$hd-desktop-min-width){
+  #{$selector-menu} {
+
+
+    flex-basis:0;
+
+    & > *{
+      flex-basis:$hd-desktop-aside-width;
+
+      min-width: (0.6*$hd-desktop-aside-width);
+    }
+
+    &:target {
+
+      flex-basis:$hd-desktop-aside-width;
+
+      color:green;
 
     }
 
