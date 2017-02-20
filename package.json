@@ -7,7 +7,7 @@
     "start": "gulp",
     "dev": "gulp",
     "test": "gulp",
-    "sync":"shjs bin/sync",
+    "sync":"sh bin/sync",
     "i":"shjs -v"
   },
   "bin": {

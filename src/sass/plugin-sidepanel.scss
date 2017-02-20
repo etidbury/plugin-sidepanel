@@ -20,6 +20,7 @@ $m-aside-width: 700vw;
 $overlay-bg: #000;
 $overlay-opacity: 0.3;
 $display-animation-duration: 0.5s;
+$display-easing: ease-in-out;
 
 html, body {
   height: 100%;
@@ -47,7 +48,7 @@ body {
   flex-basis: 0;
   height: 100%;
 
-  @include transition(flex-basis $display-animation-duration ease-out);
+  @include transition(flex-basis $display-animation-duration $display-easing);
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -99,7 +100,7 @@ body {
 
   #{$selector-menu} {
 
-    @include transition(width $display-animation-duration ease-out);
+    @include transition(width $display-animation-duration $display-easing);
 
     width: 0;
     flex-basis: inherit;
