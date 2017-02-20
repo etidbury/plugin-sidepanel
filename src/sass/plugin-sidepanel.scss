@@ -24,6 +24,8 @@ $display-animation-duration: 0.5s;
 html, body {
   height: 100%;
   width: 100%;
+  padding:0;
+  margin:0;
 }
 
 body {
@@ -78,7 +80,7 @@ body {
   & ~ #{$selector-content} > #{$selector-overlay-close} {
     display: none;
     background: $overlay-bg;
-    opacity: 0;
+    @include opacity(0);
     position: fixed;
     top: 0;
     width: 100%;
@@ -87,7 +89,7 @@ body {
 
   &:target ~ #{$selector-content} > #{$selector-overlay-close} {
     display: block;
-    opacity: $overlay-opacity;
+    @include opacity($overlay-opacity);
   }
   /*-----------/overlay-close---------*/
 

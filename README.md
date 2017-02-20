@@ -21,8 +21,8 @@
     
     </body>
     ```
-
-2. To prevent main content from being scaled upon opening side panel:
+2. Add ```@include 'plugin-sidepanel';``` to default SASS file (or use dist/css/default.css for a compiled version).
+3. To prevent main content from being scaled upon opening side panel:
 
     Add this snippet inside the ```<body>``` tag 
     

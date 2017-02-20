@@ -1,1 +1,5 @@
-@import 'plugin-sidepanel';
+
+@import "../../node_modules/compass-sass-mixins/lib/_compass.sass";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_normalize.scss";
+
+@import "plugin-sidepanel";
