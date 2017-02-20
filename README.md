@@ -1,8 +1,7 @@
 #Side Panel Plugin (Pure CSS3 + Flex)
-##Demo
+##Introduction
 
-http://demo.etidbury.com/plugin-sidepanel/
-
+Click <a href='http://demo.etidbury.com/plugin-sidepanel/' target='_blank'>here</a> for demo.
 
 ##Setup
 
