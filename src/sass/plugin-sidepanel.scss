@@ -4,39 +4,15 @@ Side Panel Plugin
 @version 1.0.0
 @author Edward Tidbury
 
--   add "<a href='#' id='sidepanel-overlay-close' />"
-    if you want the main content to be overlayed, and have the clicking of
-    the main content close the panel.
-
--
-
-
---------EXAMPLE--------
-<body>
-  <aside id='panel-1'>
-
-    <div>
-      ...[SIDE PANEL CONTENT]...
-    </div>
-  </aside>
-
-  <main>
-    <a href='#' id='sidepanel-overlay-close' />
-
-    ...[SIDE PANEL CONTENT]...
-  </main>
-
-</body>
---------/EXAMPLE--------
  */
-
-$mobile-mode-max-width: 767px;
-$hd-desktop-min-width: 920px;
 
 $selector-menu: aside;
 $selector-content: main;
 $selector-overlay-close: #sidepanel-overlay-close;
 
+
+$mobile-mode-max-width: 767px;
+$hd-desktop-min-width: 920px;
 $hd-desktop-aside-width: 30vw;
 $aside-width: 50vw;
 $aside-max-width: 300px;
