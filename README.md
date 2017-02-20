@@ -1,4 +1,4 @@
-#Side Panel Plugin
+#Side Panel Plugin (Pure CSS3 + Flex)
 
 
 ##Setup

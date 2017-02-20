@@ -1,7 +1,7 @@
 {
   "name": "plugin-sidepanel",
   "version": "1.0.0",
-  "description": "Side Panel Plugin",
+  "description": "Side Panel Plugin (Pure CSS3 + Flex)",
   "scripts": {
     "postinstall": "",
     "start": "gulp",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "https://github.com/etidbury/plugin-sidepanel.git"
   },
-  "author": "",
+  "author": "Edward Tidbury",
   "license": "MIT",
   "bugs": {
     "url": ""
