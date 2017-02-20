@@ -44,6 +44,7 @@ Click <a href='http://demo.etidbury.com/plugin-sidepanel/' target='_blank'>here<
 
 - Pure CSS3 and HTML mechanism utilising ```:target``` and ```flex```
 - Fully Responsive including support of Desktop HD screens
+- Intuitive UI Animation when switching between panels
 - Optional jQuery Snippet to prevent main content from being resized when toggling the side panel.
 
 ##Configuration
