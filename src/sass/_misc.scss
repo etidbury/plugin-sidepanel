@@ -1,4 +1,8 @@
 /*
+Side Panel Plugin
+
+@version 1.0.0
+@author Edward Tidbury
 
 -   add "<a href='#' id='sidepanel-overlay-close' />"
     if you want the main content to be overlayed, and have the clicking of
@@ -152,8 +156,6 @@ body {
     &:target {
 
       flex-basis: $hd-desktop-aside-width;
-
-      color: green;
 
     }
 
