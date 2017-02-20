@@ -1,4 +1,7 @@
 #Side Panel Plugin (Pure CSS3 + Flex)
+##Demo
+
+http://demo.etidbury.com/plugin-sidepanel/
 
 
 ##Setup

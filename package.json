@@ -22,7 +22,7 @@
   "bugs": {
     "url": ""
   },
-  "homepage": "",
+  "homepage": "http://demo.etidbury.com/plugin-sidepanel/",
   "devDependencies": {
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-transform-class-properties": "^6.22.0",
